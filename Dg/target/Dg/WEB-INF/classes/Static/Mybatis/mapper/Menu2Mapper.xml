@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yy.DAO.Menu2Mapper">
+  <resultMap id="BaseResultMap" type="com.yy.POJO.Menu2">
+    <id column="m2id" jdbcType="INTEGER" property="m2id" />
+    <result column="m2Name" jdbcType="VARCHAR" property="m2name" />
+    <result column="m1id" jdbcType="INTEGER" property="m1id" />
+  </resultMap>
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    m2id, m2Name, m1id
+  </sql>
+  <select id="selectByExample" parameterType="com.yy.POJO.Menu2Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from menu2
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu2
+    where m2id = #{m2id,jdbcType=INTEGER}
+  </select>
+  <!--查询指定一级id的2级id-->
+  <select id="selectByPrimaryKey2" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from menu2
+    where m1id = #{m1id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu2
+    where m2id = #{m2id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yy.POJO.Menu2Example">
+    delete from menu2
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yy.POJO.Menu2">
+    insert into menu2 (m2id, m2Name, m1id
+      )
+    values (#{m2id,jdbcType=INTEGER}, #{m2name,jdbcType=VARCHAR}, #{m1id,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yy.POJO.Menu2">
+    insert into menu2
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="m2id != null">
+        m2id,
+      </if>
+      <if test="m2name != null">
+        m2Name,
+      </if>
+      <if test="m1id != null">
+        m1id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="m2id != null">
+        #{m2id,jdbcType=INTEGER},
+      </if>
+      <if test="m2name != null">
+        #{m2name,jdbcType=VARCHAR},
+      </if>
+      <if test="m1id != null">
+        #{m1id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yy.POJO.Menu2Example" resultType="java.lang.Long">
+    select count(*) from menu2
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update menu2
+    <set>
+      <if test="record.m2id != null">
+        m2id = #{record.m2id,jdbcType=INTEGER},
+      </if>
+      <if test="record.m2name != null">
+        m2Name = #{record.m2name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.m1id != null">
+        m1id = #{record.m1id,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update menu2
+    set m2id = #{record.m2id,jdbcType=INTEGER},
+      m2Name = #{record.m2name,jdbcType=VARCHAR},
+      m1id = #{record.m1id,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yy.POJO.Menu2">
+    update menu2
+    <set>
+      <if test="m2name != null">
+        m2Name = #{m2name,jdbcType=VARCHAR},
+      </if>
+      <if test="m1id != null">
+        m1id = #{m1id,jdbcType=INTEGER},
+      </if>
+    </set>
+    where m2id = #{m2id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yy.POJO.Menu2">
+    update menu2
+    set m2Name = #{m2name,jdbcType=VARCHAR},
+      m1id = #{m1id,jdbcType=INTEGER}
+    where m2id = #{m2id,jdbcType=INTEGER}
+  </update>
+</mapper>

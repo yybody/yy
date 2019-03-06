@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置生成器 -->
+<generatorConfiguration>
+    <context id="mysql" targetRuntime="MyBatis3">
+    <!--注释生成器-->
+    <commentGenerator>
+        <property name="suppressAllComments" value="true" />
+    </commentGenerator>
+    <!--jdbcConnection指定如何连接数据库-->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/ego" userId="root"
+                    password="root" >
+
+    </jdbcConnection>
+    <javaTypeResolver >
+        <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+        <!--指定javabean的生成策略-->
+        <javaModelGenerator targetPackage="com.yy.POJO" targetProject="src\main\java">
+
+            <!--  for MyBatis3/MyBatis3Simple
+           自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter；
+        -->
+            <property name="constructorBased" value="false"/>
+
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true"/>
+
+            <!-- for MyBatis3 / MyBatis3Simple
+                是否创建一个不可变的类，如果为true，
+                那么MBG会创建一个没有setter方法的类，取而代之的是类似constructorBased的类
+             -->
+            <property name="immutable" value="false"/>
+
+            <!-- 设置一个根对象，
+                如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项
+                注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
+                    1，属性名相同，类型相同，有相同的getter/setter方法；
+             -->
+
+
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="true"/>
+
+        </javaModelGenerator>
+        <!--指定sql映射文件生成-->
+
+
+        <sqlMapGenerator targetPackage="Static\Mybatis\mapper" targetProject="src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--指定mapper接口的生成位置-->
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yy.DAO" targetProject="src\main\java">
+
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true"/>
+
+            <!-- 可以为所有生成的接口添加一个父接口，但是MBG只负责生成，不负责检查
+            <property name="rootInterface" value=""/>
+             -->
+        </javaClientGenerator>
+
+
+        <table tableName="logistics" domainObjectName="Logistics"></table>
+
+
+
+
+
+    </context>
+
+
+</generatorConfiguration>

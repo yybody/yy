@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd ">
+        <!--开启包扫描-->
+        <context:component-scan base-package="com.yy" use-default-filters="true">
+           <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:exclude-filter>
+       </context:component-scan>
+       <!--导入资源文件-->
+       <context:property-placeholder location="classpath:Static/*.properties"></context:property-placeholder>
+
+       <!--配置数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="jdbcUrl"  value="${jdbc.url}"></property>
+        <property name="user"  value="${jdbc.username}"></property>
+        <property name="password"  value="${jdbc.password}"></property>
+        <property name="driverClass"  value="${jdbc.driver}"></property>
+
+    </bean>
+    <!-- 自动为切面方法中匹配的方法所在的类生成代理对象。 -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <!--配置事务管理器-->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--开启基于注解的事物管理器-->
+    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"></tx:annotation-driven>
+
+    <!--spring整合mybatis，基于mybatis开启数据库管理-->
+
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="mapperLocations" value="classpath:Static/Mybatis/mapper/*.xml"></property>
+        <property name="configLocation" value="classpath:Static/Mybatis/mybatis-config.xml"></property>
+    </bean>
+    <bean class="org.mybatis.spring.SqlSessionTemplate" id="sessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+        <constructor-arg name="executorType" value="BATCH"></constructor-arg>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" p:basePackage="com.yy.DAO">
+
+    </bean>
+
+    <!--spring整合shiro,基于shiro开启权限管理-->
+    <!--配置securityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="cacheManager"/>
+
+        <property name="authenticator" ref="authenticator"></property>
+        <property name="authorizer" ref="authorizer"></property>
+        <property name="realms">
+            <list>
+                <ref bean="FristRealm"/>
+                <!--  <ref bean="secondRealm"/>-->
+            </list>
+        </property>
+
+    </bean>
+    <!--授权策略-->
+    <bean id="authorizer" class="org.apache.shiro.authz.ModularRealmAuthorizer"></bean>
+    <!--认证策略-->
+    <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator" >
+        <property name="authenticationStrategy">
+            <bean class="org.apache.shiro.authc.pam.AllSuccessfulStrategy"></bean>
+        </property>
+    </bean>
+    <!--配置EhCacheManager-->
+    <!--需要加入ehcache的jar包及其配置文件-->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:Static/shiros/ehcache.xml"></property>
+    </bean>
+    <!--配置realm,用于安全访问-->
+    <bean id="FristRealm" class="com.yy.shiro.FristRealm">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <property name="hashIterations" value="1024"></property>
+
+            </bean>
+        </property>
+
+    </bean>
+   <!-- <bean class="com.shiros.SecondRealm" id="secondRealm">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
+                <!--加密算法-->
+         <!--       <property name="hashAlgorithmName" value="SHA1"></property>-->
+                <!--加密次数-->
+           <!--     <property name="hashIterations" value="1024"></property>
+            </bean>
+        </property>
+    </bean>-->
+
+
+    <!--配置shirofilter-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"></property>
+        <property name="loginUrl" value="/static/home/longin.jsp"></property>
+        <property name="successUrl" value="/list.jsp"></property>
+        <property name="unauthorizedUrl" value="/unauthorizedUrl.jsp"></property>
+        <property name="filterChainDefinitionMap" ref="filterMap"></property>
+        <!-- <property name="filterChainDefinitions">
+
+                 anon匿名访问
+                 authc必须认证登录后才可以访问
+                 logout登出
+                 roles[角色]角色认证器
+             -->
+        <!--  <value>
+              /longin.jsp = anon
+
+
+              /shiro/longins = anon
+
+              /shiro/longout = logout
+              /user.jsp = roles[user]
+              /admin.jsp = roles[admin]
+              # everything else requires authentication:
+
+              /** = authc
+          </value>
+
+      </property>-->
+
+    </bean>
+    <bean class="com.yy.shiro.Factroy.ShiroFactroy" id="shiroFactroy"></bean>
+    <bean factory-bean="shiroFactroy" factory-method="get" id="filterMap"></bean>
+    <!--配置LifecycleBeanPostProcessor，可以自定的来调用配置在springioc容器中shiro bean的生命周期方法 -->
+    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor" id="lifecycleBeanPostProcessor"></bean>
+
+
+
+
+    <!--配置邮件接口 -->
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.smtp.host}" />
+        <property name="username" value="${mail.smtp.username}" />
+        <property name="password" value="${mail.smtp.password}" />
+        <property name="defaultEncoding" value="${mail.smtp.defaultEncoding}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.timeout">${mail.smtp.timeout}</prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>
