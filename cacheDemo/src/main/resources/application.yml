@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.101.206.52:3306/db
+
+
+#mybatis配置
+mybatis:
+  config-location: classpath:public/config/mybatis-config.xml
+  mapper-locations: classpath:public/Mapper/*.xml
+
+
+#日志请求
+logging:
+  level:
+    com.example.demo.Dao : debug
