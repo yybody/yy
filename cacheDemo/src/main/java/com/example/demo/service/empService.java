@@ -3,6 +3,8 @@ package com.example.demo.service;
 import com.example.demo.Dao.empMapper;
 import com.example.demo.PoJo.employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class empService {
     @Autowired(required = false)
     empMapper mapper;
     /*
+     @Cacheable
     * cachenames指定缓存名字
     * key指定缓存数据的key
     * keygenerator指定key的生成器，key和keygenerator2选一
@@ -34,7 +37,33 @@ public class empService {
         employee byId = mapper.getById(id);
 
         return  byId;
+    }/*
+
+       @CachePut用于更新缓存，每次执行后缓存更新
+       cachenames指定缓存名字
+    * key指定缓存数据的key
+    * keygenerator指定key的生成器，key和keygenerator2选一
+    * condition判断条件，满足时提交
+    * unless判断条件，满足时不提交，condition和unless2选一
+    * cachemanger，缓存管理器
+    * sync：异步
+
+
+
+
+    */
+    @CachePut(value = "emp",key = "#e.id")
+    public int updateEmployee(employee e){
+
+        int i = mapper.updateById(e);
+
+        return i;
     }
+    /*
+    @CacheEvict用于清空缓存
+    allentries = ture 指定清除所有缓存
+    beforeincocation =false 指定缓存清除是在方法执行后执行
+    */
 
 
 }

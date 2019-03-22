@@ -11,6 +11,6 @@ public interface empMapper {
 
     employee getById(@Param("id") Integer id);
 
-    int updateById();
+    int updateById(employee e);
 
 }
