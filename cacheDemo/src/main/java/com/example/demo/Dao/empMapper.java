@@ -2,6 +2,7 @@ package com.example.demo.Dao;
 
 import com.example.demo.PoJo.employee;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author 袁毅
@@ -11,6 +12,9 @@ public interface empMapper {
 
     employee getById(@Param("id") Integer id);
 
-    int updateById(employee e);
+    @Select("select * from employee where lastName = #{lastName}")
+    employee getById2(String lastName);
+
+    void updateById(employee e);
 
 }

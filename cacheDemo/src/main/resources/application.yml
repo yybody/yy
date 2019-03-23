@@ -4,6 +4,14 @@ spring:
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.101.206.52:3306/db
+#redis
+  redis:
+      host: 47.101.206.52
+      password: 123456
+
+
+
+
 
 
 #mybatis配置
@@ -16,3 +24,7 @@ mybatis:
 logging:
   level:
     com.example.demo.Dao : debug
+
+
+
+

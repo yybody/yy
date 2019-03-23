@@ -1,10 +1,17 @@
 package com.example.demo.PoJo;
 
+import sun.plugin2.message.Conversation;
+import sun.plugin2.message.Serializer;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.nio.ByteBuffer;
+
 /**
  * @author 袁毅
  * @date 2019/3/21 0021-下午 5:39
  */
-public class employee {
+public class employee implements Serializable {
 
     Integer id;
     String  lastName;//员工姓名
@@ -73,4 +80,6 @@ public class employee {
                 ", dId=" + dId +
                 '}';
     }
+
+
 }

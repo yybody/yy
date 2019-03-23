@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -19,10 +20,22 @@ public class DemoApplicationTests {
 	@Test
 	public void contextLoads() {
 
-         employee byId = mapper.getEmployee(1);
-		 System.out.println(byId.toString());
-         mapper.updateEmployee(new employee(1,"y4","861040188@qq.com",1,1));
+
+         mapper.updateEmployee(new employee(1,"y5","861040188@qq.com",1,1));
 
     }
+    //导入redis模板
+    @Autowired
+    RedisTemplate<Object,Object> getRedisTemplate;
+
+    @Test
+	public void test01(){
+
+    	employee employee = mapper.getEmployee(1);
+//        getRedisTemplate.opsForValue().set("redis",employee);
+		getRedisTemplate.opsForList().leftPush("mylist2",employee);
+        getRedisTemplate.opsForList().leftPush("mylist2",new employee());
+
+	}
 
 }

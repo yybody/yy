@@ -3,7 +3,16 @@
 
 <mapper namespace="com.example.demo.Dao.empMapper">
 
-    <select id="getById" resultType="com.example.demo.PoJo.employee">
+    <resultMap id="selectEmployee" type="com.example.demo.PoJo.employee">
+        <id property="id" column="id"></id>
+        <result property="lastName" column="lastName"></result>
+        <result property="email" column="email"></result>
+        <result property="gender" column="gender"></result>
+        <result property="dId" column="d_id"></result>
+
+    </resultMap>
+
+    <select id="getById" resultMap="selectEmployee">
 
         SELECT * FROM employee <where>
 
@@ -19,7 +28,33 @@
     </select>
     <update id="updateById">
 
-        UPDATE employee SET lastName = #{lastName},email = #{email},gender = #{gender},d_id = #{dId}  WHERE id = #{id}
+        UPDATE employee <trim prefix="set" suffixOverrides=",">
+                             
+                            <if test="lastName!=null">
+
+                                lastName = #{lastName},
+                            </if>
+                            <if test="email!=null">
+
+                                email = #{email},
+
+                            </if>
+                            <if test="gender!=null">
+                                gender = #{gender},
+                            </if>
+                            <if test="dId!=null">
+
+                                d_id = #{dId}
+
+                            </if>
+        
+        
+        
+                        </trim>
+        
+
+    
+        WHERE id = #{id}
 
     </update>
 
