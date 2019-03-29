@@ -1,0 +1,13 @@
+<form bindsubmit="formSubmit">
+  <view>
+    <input name='username' type='text' placeholder="用户名" />
+  </view>
+  <view>
+    <input name='password' type='text' password='ture' placeholder="密码" />
+  </view>
+
+  <view class='btn'>
+    <button form-type='submit'>Submit</button>
+  </view>
+
+</form>

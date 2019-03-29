@@ -1,0 +1,26 @@
+<view>
+
+  <view class='avatarUrl'>
+    <image src="{{userInfo.avatarUrl}}"></image>
+    <text>欢迎您{{userInfo.nickName}}</text>
+  </view>
+  <view id="myswiper">
+    <swiper interval='{{interval}}' autoplay='{{autoplay}}' indicator-dots='{{indicator}}' indicator-active-color='{{activecolor}}' indicator-color='{{indicatorcolor}}'>
+      <block wx:for="{{imgUrls}}" wx:key='item'>
+
+        <swiper-item>
+
+          <image id='img' src='{{item}}' class="slide-image" width="335rpx" height="150rpx" />
+
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view id='menu'>
+  
+   <text>主页</text>
+   <text bindtap='requestTo'>我</text>
+  
+  </view>
+</view>

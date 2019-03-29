@@ -1,0 +1,49 @@
+/* pages/main/main.wxss */
+/*头像*/
+.avatarUrl image{
+        width: 100rpx;
+        height: 100rpx;
+        border: 1rpx solid;
+        border-radius:50rpx;
+        margin-left: 20rpx;
+         
+
+
+}
+.avatarUrl image,text{
+vertical-align:middle;
+
+}
+.avatarUrl{
+  padding-bottom: 20rpx;
+ border-bottom: 1px solid wheat ;
+}
+
+#myswiper{
+
+margin: 20rpx auto;
+
+padding-bottom: 30rpx;
+
+border-bottom: 1px solid yellowgreen;
+}
+
+#img{ width: 100%;
+
+ 
+}
+/*固定位置*/
+#menu{
+
+  width: 100%;
+  position: fixed;
+  bottom: 50rpx;
+  left: 0rpx;
+  border-top: 1rpx solid;
+  padding-top: 40rpx;
+  opacity: 0.4
+}
+#menu text{
+
+  margin-left: 200rpx;
+}

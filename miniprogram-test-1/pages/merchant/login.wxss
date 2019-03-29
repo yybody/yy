@@ -1,0 +1,13 @@
+/* pages/merchant/login.wxss */
+
+/*input是行内块元素*/
+
+input {
+  width: 500rpx;
+  margin: 0 auto;
+  border: 1rpx solid rgb(8, 1, 1);
+}
+
+button {
+  margin: 100rpx 10rpx 300rpx;
+}

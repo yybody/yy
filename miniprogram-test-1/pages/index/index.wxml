@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="container">
+ 
+  <!-- <open-data type="userNickName"></open-data>
+  <open-data type="userAvatarUrl"></open-data>
+  <open-data type="userGender" lang="zh_CN"></open-data> -->
+  <navigator
+  url='/pages/merchant/login'
+  open-type="navigate"
+  hover-class="none"
+  >
+  <text style='display:{{userShow}}' >商家登录</text>
+  </navigator>
+  <image class='avatarUrl' src='{{userInfo.avatarUrl}}' style='display:{{userShow}}'></image>
+  <text class='nickName' style='display:{{userShow}}'>欢迎你{{userInfo.nickName}}</text>
+  
+  <button open-type='getUserInfo' style='display:{{isShow}}'  bindgetuserinfo='authorization'>授权</button>
+  
+</view>
