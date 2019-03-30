@@ -1,20 +1,10 @@
-// pages/merchant/homePage.js
+// pages/merchant/homeFound/found.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
-  },
-  /*扫一扫 */
-  sys() {
-    wx.scanCode({
-      onlyFromCamera: true,
-      success: (res) => {
-        console.log(res)
-      }
-    })
 
   },
 
@@ -29,13 +19,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.getUserInfo({
-      success: (data) => {
-        this.setData({
-          userInfo: data.userInfo
-        })
-      }
-    })
+
   },
 
   /**

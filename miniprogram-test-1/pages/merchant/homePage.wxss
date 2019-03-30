@@ -1,1 +1,50 @@
 /* pages/merchant/homePage.wxss */
+/* pages/home/home.wxss */
+.avatarUrl{
+  width: 100%;
+  display: flex;
+  background-color: red;
+}
+.avatarUrl image{
+
+        width: 100rpx;
+        height: 100rpx;
+        margin-left: 30rpx;
+        border: 1rpx solid aliceblue;
+        border-radius:50rpx;
+        
+         
+
+
+}
+#nav{
+  display: flex;
+  flex-direction: column;
+  margin-left:50rpx; 
+  }
+
+.kb{
+   height: 20rpx;
+   
+   border-bottom:1rpx solid rgba(0, 0, 0, 0.952); 
+  }
+.service{
+  display: flex;
+  width: 100%;
+  
+  
+  border-bottom:1rpx solid black;
+ 
+   
+  }
+  .service view{
+        
+        border-right: 1rpx solid black;
+  }
+#sys{
+   width: 100rpx;
+   height: 100rpx;
+   padding-top: 20rpx;
+   margin-left: 0rpx;
+}
+

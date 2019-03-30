@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    token:"",
+    
     userInfo: "",
     isShow:"",
     userShow:""
@@ -18,7 +18,7 @@ Page({
 
     const openid = getApp()
      //去get app()获取 openid判断是否是商家
-    console.log(openid)
+    console.log(wx.getStorageSync('token'))
       
     if (false) {
       this.setData({
@@ -42,8 +42,9 @@ Page({
           }),//获取用户信息
             wx.getUserInfo({
               success: (data) => {
-
+              
                 this.setData({
+                  
                   userInfo: data.userInfo
                 })
               }

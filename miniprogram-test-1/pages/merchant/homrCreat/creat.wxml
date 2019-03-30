@@ -1,0 +1,34 @@
+<!--优惠券生成-->
+<view>
+
+
+  
+              
+              <!--表单-->
+              <form bindsubmit="formSubmit">
+                   
+                <input name='jname' type='text' placeholder='优惠劵使用规则（）' />
+                  <view class="section">
+                   
+                    <picker mode="date" name='jtime'  start="2015-09-01" end="2017-09-01"             bindchange="bindDateChange">
+                      <view class="picker">
+                      过期时间:<text>{{date}}</text>
+                      </view>
+                    </picker>
+                  </view><radio-group class="radio-group" bindchange="radioChange">
+                          <label class="radio" wx:for="{{items}}">
+                            <radio value="{{item.name}}" checked="{{item.checked}}" />
+                            {{item.value}}
+                          </label>
+                  </radio-group>
+                <input type='number'name='jdiscount' placeholder='优惠券折扣' />
+                <input type='number' name='jnumber' placeholder='优惠券数量'  />
+                <textarea name='jtext' placeholder='优惠券描述'></textarea>
+                <button size='mini'  type='primary' plain='true'  form-type="submit"  >提交</button>
+                   
+              </form>
+         
+
+
+
+</view>

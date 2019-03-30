@@ -1,11 +1,17 @@
 {
   "pages": [
+    "pages/merchant/homeFound/found",
+    "pages/merchant/homePage",
+    "pages/merchant/homrCreat/creat",
+    "pages/merchant/login",
     "pages/index/index",
     "pages/main/main",
-    "pages/merchant/login",
     "pages/logs/logs",
     "pages/main/home",
-    "pages/merchant/homePage"
+    
+    
+    
+    "pages/merchant/Edit/edit"
   ],
   "window": {
     "backgroundTextStyle": "light",

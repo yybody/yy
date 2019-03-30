@@ -1,0 +1,12 @@
+/* pages/merchant/homrCreat/creat.wxss */
+input,textarea{
+  width: 400rpx;
+  border: 1rpx solid black;
+}
+.picker{
+    padding: 13px;
+    background-color: #FFFFFF;
+}
+button{
+  margin-left: 100rpx;
+}

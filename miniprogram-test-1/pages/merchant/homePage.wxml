@@ -1,2 +1,51 @@
-<!--pages/merchant/homePage.wxml-->
-<text>pages/merchant/homePage.wxml</text>
+<!--pages/home/home.wxml-->
+<!--个人信息展示-->
+<view>
+ 
+        <view class='avatarUrl'>
+           <image  src="{{userInfo.avatarUrl}}"></image>
+           <view id='nav'>
+               <text>商家</text>
+               <text>{{userInfo.nickName}}</text>
+           </view>
+           
+        </view>
+        <!--空白-->
+        <view class='kb'></view>
+
+        
+        <view class='service'>
+                <view>
+                      服务
+                </view>
+        </view>
+        <!--功能列表-->
+        
+
+              <view>
+                  <view>
+                        <image id='sys' src='/images/sys.jpg'  catchtap='sys'></image>
+                  </view>
+                  <view>
+                      <navigator url='/pages/merchant/homeCreat/creat' >生成礼券</navigator>
+                      
+                  </view>
+                  <view>
+                      <navigator url='/pages/merchant/login' >查看礼券</navigator>
+                      
+                  </view>
+                  <view>
+                      <navigator url='/pages/merchant/login' >商家编辑</navigator>
+                      
+                  </view>
+              </view>
+              
+
+              
+              
+        
+     
+        
+   
+     
+</view>
