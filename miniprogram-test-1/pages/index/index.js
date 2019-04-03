@@ -7,7 +7,8 @@ Page({
     
     userInfo: "",
     isShow:"",
-    userShow:""
+    userShow:"",
+    userShow2: ""
 
 
   },
@@ -16,19 +17,31 @@ Page({
   
   onLoad: function () {
 
-    const openid = getApp()
+    const openid = wx.getStorageSync('token')
      //去get app()获取 openid判断是否是商家
-    console.log(wx.getStorageSync('token'))
-      
-    if (false) {
-      this.setData({
-        userShow:"block"
+    
+      wx.request({
+        url: 'http://192.168.43.49:8080/food_controller/powerServlet?openid='+openid,
+       
+        success:(res)=>{
+          console.log(res.data)
+          
+          if (res.data) {
+            wx.setStorageSync("user",false)
+            this.setData({
+              userShow: "block"
+              
+            })
+          } else {
+            wx.setStorageSync("user", true)
+            this.setData({
+              userShow: "none"
+            })
+          }
+        }
+
       })
-    } else {
-      this.setData({
-        userShow: "none"
-      })
-    }
+    
 
 
     //判断用户是否授权
@@ -37,7 +50,8 @@ Page({
         if (res.authSetting["scope.userInfo"]) {
           this.setData({
 
-            isShow: "none"
+            isShow: "none",
+            userShow2: "block"
 
           }),//获取用户信息
             wx.getUserInfo({
@@ -49,8 +63,9 @@ Page({
                 })
               }
             })
+            wx
             //如果是用户
-            if(true){
+            if(wx.getStorageSync('user')){
               this.timeTo()
             }else{
              wx.showToast({
@@ -62,7 +77,8 @@ Page({
         
           this.setData({
 
-            isShow: "block"
+            isShow: "block",
+            userShow2: "none"
 
           })
 
@@ -89,9 +105,14 @@ Page({
                   userInfo: data.userInfo
                 }) 
                 //如果是用户
-                if (true) {
+                if (wx.getStorageSync('user')) {
                   this.timeTo()
                 } else {
+                  this.setData({
+                    userShow2: "block",
+                   
+
+                  })
                   wx.showToast({
                     title: '请商家登录商家页面',
                   })
@@ -107,7 +128,7 @@ Page({
             content: '你已经取消授权',
           })
           this.setData({
-
+          
             isShow: "block"
 
           })

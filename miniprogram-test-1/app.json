@@ -1,17 +1,25 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/main/main",
+    
+    "pages/main/home",
+    "pages/main/juan/useJuan",
+   
+    "pages/main/shopItem/shopitem",
+    
+   
+    
+    
+    
+    "pages/merchant/Edit/edit",
     "pages/merchant/homeFound/found",
     "pages/merchant/homePage",
     "pages/merchant/homrCreat/creat",
     "pages/merchant/login",
-    "pages/index/index",
-    "pages/main/main",
-    "pages/logs/logs",
-    "pages/main/home",
+    "pages/logs/logs"
     
     
-    
-    "pages/merchant/Edit/edit"
   ],
   "window": {
     "backgroundTextStyle": "light",

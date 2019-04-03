@@ -1,10 +1,17 @@
 // pages/merchant/homeFound/found.js
-Page({
 
+Page({
+  
   /**
    * 页面的初始数据
    */
   data: {
+    nums:"",//每一种劵的数量
+    type:"",//劵的类型
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000
 
   },
 
@@ -12,21 +19,47 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+   
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const openid = wx.getStorageSync('token')
+    
+    wx.request({
+      url: 'http://192.168.43.49:8080/food_controller/souponNumServlet?openid='+openid,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          type: res.data
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const openid = wx.getStorageSync('token')
+    //请求数据
+    wx.request({
+      url: 'http://192.168.43.49:8080/food_controller/SelectAllSoupon?openid='+openid,
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          nums: res.data
+        })
+      }
+    })
   },
 
   /**

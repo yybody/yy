@@ -1,1 +1,4 @@
 /* pages/merchant/homeFound/found.wxss */
+swiper-item{
+  height: 100%;
+}

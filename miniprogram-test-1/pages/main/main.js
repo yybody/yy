@@ -16,7 +16,17 @@ Page({
     autoplay: true,
     indicator: true,
     activecolor: '#876541',
-    indicatorcolor: '#567890'
+    indicatorcolor: '#567890',
+    seller:{}
+
+  },
+  formSubmit(e){
+
+    console.log('form发生了submit事件，携带数据为：', e.detail.value.openid)
+    let openid = e.detail.value.openid
+    wx.navigateTo({
+      url: '/pages/main/shopItem/shopitem?openid='+openid,
+    })
 
   },
 
@@ -37,7 +47,19 @@ requestTo(){
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    wx.request({
+      url: 'http://192.168.43.50:8080/food_controller/selectAllSeller',
+      header:{
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success:(res)=>{
+        console.log(res.data[0])
+         this.setData({
+           seller: res.data
+         })
+      }
 
+    })
   },
 
   /**

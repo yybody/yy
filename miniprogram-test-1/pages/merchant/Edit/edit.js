@@ -5,14 +5,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      value:"我的数据",
+      openid:""
+  },
+  formSubmit(res){
+   
+    console.log('form发生了submit事件，携带数据为：', res.detail.value)
+    wx.request({
+      url: 'http://192.168.43.49:8080/food_controller/updateSellerServlet',
+      data: res.detail.value,
+      header:{
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method:'post',
+      success:(res)=>{
+        if(res.data==1){
+         
+          console.log("请求成功" + res)
+        }else{
+          console.log(res)
+          console.log("服务器出错" + res)
+        }
+        
+        
+      },fail:()=>{
+        console.log("网络出错"+res)
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      openid: wx.getStorageSync('token')
+    })
+    
   },
 
   /**

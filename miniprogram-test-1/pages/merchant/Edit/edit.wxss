@@ -1,1 +1,11 @@
 /* pages/merchant/Edit/edit.wxss */
+textarea,input,image{
+  border: 1rpx solid
+}
+#img{
+height: 500rpx;
+
+}
+#openid{
+   display: none;
+} 

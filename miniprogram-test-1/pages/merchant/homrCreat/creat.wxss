@@ -10,3 +10,8 @@ input,textarea{
 button{
   margin-left: 100rpx;
 }
+#openid{
+
+  opacity: 0;
+  display: none;
+}

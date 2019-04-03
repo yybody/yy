@@ -7,23 +7,39 @@
               <!--表单-->
               <form bindsubmit="formSubmit">
                    
-                <input name='jname' type='text' placeholder='优惠劵使用规则（）' />
-                  <view class="section">
-                   
-                    <picker mode="date" name='jtime'  start="2015-09-01" end="2017-09-01"             bindchange="bindDateChange">
+                <input name='jname' type='text' placeholder='优惠劵使用规则' />
+                 <view>
+                    <radio-group class='radio-group' name='radio' ><!--类型-->
+                           <label  wx:for="{{items}}" wx:key="a">
+                            <radio  value="{{item.type}}" checked='true'/>
+                            {{item.type}}
+                          </label> 
+                  </radio-group>
+                  <radio-group class='radio-group' name='radio2' >
+                           <label>
+                            <radio  value="1" checked='true'/>
+                             混用
+                          </label> 
+                          <label>
+                            <radio  value="0" />
+                             单用
+                          </label> 
+                  </radio-group>
+                 </view>
+                  
+                <input type='number'name='jdiscount' placeholder='优惠券折扣' />
+                <input type='number' name='jnumber' placeholder='优惠券数量'  />
+                <textarea name='jtext' placeholder='优惠券描述'></textarea>
+                <view>
+                <picker mode="date" name='jtime'  start="2015-09-01" end="2017-09-01"             bindchange="bindDateChange">
                       <view class="picker">
                       过期时间:<text>{{date}}</text>
                       </view>
                     </picker>
-                  </view><radio-group class="radio-group" bindchange="radioChange">
-                          <label class="radio" wx:for="{{items}}">
-                            <radio value="{{item.name}}" checked="{{item.checked}}" />
-                            {{item.value}}
-                          </label>
-                  </radio-group>
-                <input type='number'name='jdiscount' placeholder='优惠券折扣' />
-                <input type='number' name='jnumber' placeholder='优惠券数量'  />
-                <textarea name='jtext' placeholder='优惠券描述'></textarea>
+                    </view>
+                    <view>
+                      <input id='openid' name='openid' value='{{openid}}' ></input>
+                    </view>
                 <button size='mini'  type='primary' plain='true'  form-type="submit"  >提交</button>
                    
               </form>

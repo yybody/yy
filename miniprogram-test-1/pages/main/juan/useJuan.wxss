@@ -1,0 +1,22 @@
+/* pages/main/juan/useJuan.wxss */
+/* pages/main/shopItem/shopitem.wxss */
+ #forms{
+  width: 100%;
+  float: left;
+  border: 1rpx solid
+}
+#clear{
+  clear: both
+}
+#ms{
+  margin-left: 140rpx;
+}
+.layout{
+display: flex;
+flex-direction: column;
+margin-left: 300rpx;
+
+}
+.Get{
+  margin-left: 150rpx;
+}

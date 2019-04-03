@@ -23,7 +23,7 @@
 
               <view>
                   <view>
-                        <image id='sys' src='/images/sys.jpg'  catchtap='sys'></image>
+                        <navigator url='/pages/main/juan/useJuan'>优惠券</navigator>
                   </view>
               </view>
               

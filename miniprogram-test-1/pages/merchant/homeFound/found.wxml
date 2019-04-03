@@ -6,9 +6,24 @@
   interval="{{interval}}"
   duration="{{duration}}"
 >
-  <block wx:for="{{imgUrls}}">
+  <block wx:for="{{type}}" wx:key='sd' wx:for-item='ty'>
     <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150" />
+       {{ty.souponType}}剩余{{ty.usedSoupon}}张
+      
+       <block wx:for="{{nums}}" wx:key='sd1' wx:for-item='num'>
+          <view wx:if="{{ty.souponType==num.SouponType}}">
+          <view>
+          <text>描述:</text>{{num.depict}}
+          <text>--类型:</text>{{num.SouponType}}
+          <text>--有效期:</text>{{useTime}}
+          <text>--是否可以混用:</text>{{num.mixuse}}
+          <text>--折扣:</text>{{num.rule}}
+          </view>
+          </view>
+       
+       </block>
+       
+       
     </swiper-item>
   </block>
 </swiper>

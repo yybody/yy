@@ -11,8 +11,8 @@
   >
   <text style='display:{{userShow}}' >商家登录</text>
   </navigator>
-  <image class='avatarUrl' src='{{userInfo.avatarUrl}}' style='display:{{userShow}}'></image>
-  <text class='nickName' style='display:{{userShow}}'>欢迎你{{userInfo.nickName}}</text>
+  <image class='avatarUrl' src='{{userInfo.avatarUrl}}' style='display:{{userShow2}}'></image>
+  <text class='nickName' style='display:{{userShow2}}'>欢迎你{{userInfo.nickName}}</text>
   
   <button open-type='getUserInfo' style='display:{{isShow}}'  bindgetuserinfo='authorization'>授权</button>
   

@@ -27,15 +27,15 @@
                         <image id='sys' src='/images/sys.jpg'  catchtap='sys'></image>
                   </view>
                   <view>
-                      <navigator url='/pages/merchant/homeCreat/creat' >生成礼券</navigator>
+                      <navigator url='./homrCreat/creat' >生成礼券</navigator>
                       
                   </view>
                   <view>
-                      <navigator url='/pages/merchant/login' >查看礼券</navigator>
+                      <navigator url='./homeFound/found' >查看礼券</navigator>
                       
                   </view>
                   <view>
-                      <navigator url='/pages/merchant/login' >商家编辑</navigator>
+                      <navigator url='./Edit/edit' >商家编辑</navigator>
                       
                   </view>
               </view>

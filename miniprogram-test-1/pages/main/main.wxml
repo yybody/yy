@@ -16,7 +16,30 @@
       </block>
     </swiper>
   </view>
+  <!-- 商家列表 -->
+  <view wx:for="{{seller}}" wx:key="a" wx:for-item="itemName">
+        <view>
+        
+          <form bindsubmit="formSubmit">
+          <input value='{{itemName.sellerid}}' name='openid' style='display:none'></input>
+          <image id='shopImg' src='{{itemName.shoppic}}'></image>
+          <view >
+          <label for='shopname'>
+            商家名:<input id='shopname' type='text' value='{{itemName.shopname}}'></input>
+          </label>
+          <label for='depict'>
+            商家描述:<input id='depict' type='text' value='{{itemName.depict}}'></input>
+          </label>
+          </view>
+          <button form-type='submit'>查看</button>
+          </form>
+       </view>
+       
+  </view> 
+ 
+  <view></view>
 
+   
   <view id='menu'>
   
    <text>主页</text>

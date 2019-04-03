@@ -1,0 +1,23 @@
+<!--指定商家的所有劵-->
+<block wx:for="{{quan}}" wx:key='key'>
+<form bindsubmit="formSubmit">
+<view id='forms' >
+<view>
+      <input name='rule' value='{{item.rule}}' ><text>{{item.rule}}</text></input>
+
+
+      <text>
+          <text id='ms'>{{item.depict}}</text>
+          <text class='layout'>
+             <text>{{item.useTime}}</text>
+          </text>
+          <text style='display:none'>用户id需要传往后台现在没传</text>
+         
+          <input style='display:none' name='sellerid' value='{{item.sellerid}}' ></input>
+      </text>
+      <button form-type='submit'>领取</button>
+</view>     
+</view>
+<view id='clear' style='display:none'></view>
+</form>      
+</block>

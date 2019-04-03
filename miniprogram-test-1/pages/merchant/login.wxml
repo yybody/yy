@@ -5,6 +5,7 @@
   <view>
     <input name='password' type='text' value='123456' password='ture' placeholder="密码" />
   </view>
+ 
 
   <view class='btn'>
     <button form-type='submit' plain='true'>Submit</button>

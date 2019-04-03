@@ -10,6 +10,13 @@
 
 
 }
+#shopImg{
+   width: 100rpx;
+        height: 100rpx;
+        border: 1rpx solid;
+        border-radius:50rpx;
+        margin-left: 20rpx;
+}
 .avatarUrl image,text{
 vertical-align:middle;
 
