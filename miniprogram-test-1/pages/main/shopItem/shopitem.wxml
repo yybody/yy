@@ -1,23 +1,41 @@
 <!--指定商家的所有劵-->
+<improt src="/pages/merchant/template/temp.wxml" />
 <block wx:for="{{quan}}" wx:key='key'>
 <form bindsubmit="formSubmit">
+<template is='quan'></template>
 <view id='forms' >
+
 <view>
-      <input name='rule' value='{{item.rule}}' ><text>{{item.rule}}</text></input>
-
-
-      <text>
-          <text id='ms'>{{item.depict}}</text>
-          <text class='layout'>
-             <text>{{item.useTime}}</text>
-          </text>
-          <text style='display:none'>用户id需要传往后台现在没传</text>
+      
+      <!-- /// -->
+      <view class='coupon'>
+        <view class="sawtooth">
+            <view class="price">
+                <input style='display:none' name="rule" value='{{item.rule}}' ></input>{{item.rule}} </view>
+          
+        </view>
+        <view class="coupon-content">
+             <view class='coupon-explain'>
+                <text class="coupon-restrictions">描述：{{item.depict}}</text> 
+            </view>
+            <view class='coupon-use'>
+                <text class='coupon-time'>{{item.useTime}}</text>
+                <button class="use" form-type='submit'>立即领取</button>
+            </view>
+            <view>
+                <text class='coupon-tips'>可否混合使用：{{item.mixuse==1?'能':'不能'}}</text>
+                
+            </view>
+            <input style='display:none' name='userid' value='{{userid}}'>用户id需要传往后台现在没传</input>
+            <text class='coupon-tips'>剩余张数：{{item.SY}}</text>
          
-          <input style='display:none' name='sellerid' value='{{item.sellerid}}' ></input>
-      </text>
-      <button form-type='submit'>领取</button>
+          <input style='display:none' name='sellerid' value='{{sellerid}}' ></input>
+        </view>
+    </view>
 </view>     
 </view>
 <view id='clear' style='display:none'></view>
+
 </form>      
 </block>
+

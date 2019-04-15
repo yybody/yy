@@ -1,18 +1,22 @@
 <!--商家修改-->
 <view>
-
+   <view class='avatarUrl'>
+           <image  src="{{userInfo.avatarUrl}}"></image>
+           <view id='nav'>
+               <text>商家</text>
+               <text>{{userInfo.nickName}}</text>
+           </view>
+        </view>
    <form bindsubmit="formSubmit">
-      <lable for='img'>
-      
-      店铺头像<image name='img' id='img'  src='http://img1.imgtn.bdimg.com/it/u=251736075,1255731634&fm=26&gp=0.jpg'></image>
-      </lable>
+   
+  
       <lable for='name'>
       
-      店铺名<input name='dName' id='name' type='text' value='{{value}}' ></input>
+      <input name='dName' id='name' type='text'  placeholder='店铺名' ></input>
       </lable>
        <lable for='textarea'>
       <input name='openid' id='openid' value='{{openid}}' ></input>
-      店铺简介<textarea name='dTextarea'id='textarea' value='{{value}}' ></textarea>
+      <textarea name='dTextarea'id='textarea'  placeholder='店铺简介' ></textarea>
       </lable>
        <button form-type='submit'>提交</button>
    </form>

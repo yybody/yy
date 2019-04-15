@@ -10,7 +10,7 @@
 
         <swiper-item>
 
-          <image id='img' src='{{item}}' class="slide-image" width="335rpx" height="150rpx" />
+          <image id='img' src='{{item}}' class="slide-image" width="335rpx" height="160rpx" />
 
         </swiper-item>
       </block>
@@ -18,32 +18,42 @@
   </view>
   <!-- 商家列表 -->
   <view wx:for="{{seller}}" wx:key="a" wx:for-item="itemName">
-        <view>
-        
-          <form bindsubmit="formSubmit">
-          <input value='{{itemName.sellerid}}' name='openid' style='display:none'></input>
-          <image id='shopImg' src='{{itemName.shoppic}}'></image>
-          <view >
-          <label for='shopname'>
-            商家名:<input id='shopname' type='text' value='{{itemName.shopname}}'></input>
-          </label>
-          <label for='depict'>
-            商家描述:<input id='depict' type='text' value='{{itemName.depict}}'></input>
-          </label>
-          </view>
-          <button form-type='submit'>查看</button>
-          </form>
-       </view>
-       
-  </view> 
- 
-  <view></view>
+    <view>
+      <form bindsubmit="formSubmit">
+      <input value='{{itemName.sellerid}}' name='openid' style='display:none'></input>
+        <view class='ticket'>
+          <scroll-view>
+            <view class='card' style='display: flex;border-bottom:1px solid #ccc;'>
+              <image id='img2' src='{{itemName.shoppic}}' mode="widthFix" style="width:150rpx;height=150rpx;margin-bottom:15rpx"></image>
 
-   
-  <view id='menu'>
-  
-   <text>主页</text>
-   <text bindtap='requestTo'>我</text>
-  
+              <view class='detail'>
+                <title>{{itemName.shopname}}</title>
+                <view class='type'>{{itemName.depict}}</view>
+                <button form-type='submit'  type='warn' size='mini' class='submit'>查看</button>
+              </view>
+            </view>
+          </scroll-view>
+
+        </view>
+      </form>
+    </view>
+
+    <!-- ////////// -->
+
+
+
   </view>
+
+
+
+
+  <view id='menu'>
+
+    <text>主页</text>
+    <text bindtap='requestTo'>我</text>
+
+  </view>
+
 </view>
+
+

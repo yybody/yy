@@ -9,10 +9,19 @@ Page({
   data: {
       date:"",
       items:"",
-     openid:""
+     openid:"",
+    typeIndex:""
   },
   
-  
+  bindPickerChange(res){
+    console.log(res)
+    const i = res.detail.value;
+    this.setData({
+      typeIndex: i
+
+
+    })
+  },
    
   //获取时间显示
   bindDateChange(res){
@@ -76,7 +85,7 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: (res) => {
-        // console.log(res.data[0])
+         console.log(res.data)
         this.setData({
           items: res.data
         })

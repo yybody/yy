@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var user="";
 Page({
   data: {
     
@@ -16,31 +16,43 @@ Page({
   //事件处理函数
   
   onLoad: function () {
-
-    const openid = wx.getStorageSync('token')
-     //去get app()获取 openid判断是否是商家
+  
     
-      wx.request({
-        url: 'http://192.168.43.49:8080/food_controller/powerServlet?openid='+openid,
+    //执行登录
+    wx.login({
+      success: (res) => {
+        console.log(res.code)
+        const url = 'http://192.168.43.49:8080/food_controller/getSessionKeyServlet?code=' + res.code
+        //发送请求
+        wx.request({
+          url: url,
+          method: "GET",
+          success: (res) => {
+            console.log("返回值" + res.data)
        
-        success:(res)=>{
-          console.log(res.data)
-          
-          if (res.data) {
-            wx.setStorageSync("user",false)
-            this.setData({
-              userShow: "block"
-              
-            })
-          } else {
-            wx.setStorageSync("user", true)
-            this.setData({
-              userShow: "none"
-            })
-          }
-        }
+            if (res.data) {
+              user=false
+              this.setData({
+                userShow: "block"
 
-      })
+              })
+            } else {
+              user=true
+              this.setData({
+                userShow: "none"
+              })
+            }
+          }
+
+        })
+      },
+      fail: () => {
+        //登录失败
+        console.log("登录失败")
+      }
+    })
+
+
     
 
 
@@ -65,7 +77,7 @@ Page({
             })
             wx
             //如果是用户
-            if(wx.getStorageSync('user')){
+            if(user){
               this.timeTo()
             }else{
              wx.showToast({
@@ -105,7 +117,7 @@ Page({
                   userInfo: data.userInfo
                 }) 
                 //如果是用户
-                if (wx.getStorageSync('user')) {
+                if (user) {
                   this.timeTo()
                 } else {
                   this.setData({
@@ -144,8 +156,57 @@ authorization(res){
     this.renderer() 
   },
 
-onShow(){
+// login2:(e)=>{
+//   const openid = wx.getStorageSync('token')
+//   console.log("openid" + openid)
+//   //去get app()获取 openid判断是否是商家
+
+//   wx.request({
+//     url: 'http://192.168.43.49:8080/food_controller/powerServlet?openid=' + openid,
+
+//     success: (res) => {
+//       console.log(res.data)
+
+//       if (res.data) {
+//         wx.setStorageSync("user", false)
+//         this.setData({
+//           userShow: "block"
+
+//         })
+//       } else {
+//         wx.setStorageSync("user", true)
+//         this.setData({
+//           userShow: "none"
+//         })
+//       }
+//     }
+
+//   })
+// },
+login3:(e)=>{
  
+},
+
+onShow(){
+ wx.login({
+   
+   success:(res)=>{
+     const url = 'http://192.168.43.49:8080/food_controller/powerServlet?code=' + res.code
+     wx.request({
+       url: url,
+       header: {
+         "Content-Type": "application/x-www-form-urlencoded"
+       },
+       success:(res)=>{
+         
+         wx.setStorageSync('token', res.data.session_key + "-" + res.data.openid)
+         console.log("我的opendid"+wx.getStorageSync("token"))
+       }
+     })
+   }
+ })
+
+
   
   },
 

@@ -1,17 +1,61 @@
 /* pages/merchant/homrCreat/creat.wxss */
-input,textarea{
-  width: 400rpx;
-  border: 1rpx solid black;
-}
-.picker{
-    padding: 13px;
-    background-color: #FFFFFF;
-}
-button{
-  margin-left: 100rpx;
-}
-#openid{
 
-  opacity: 0;
-  display: none;
+view {
+    color: #333;
+}
+
+.form {
+    margin: 30rpx;
+}
+
+.form-item {
+    padding: 30rpx 0;
+    border-bottom: 1px solid #eee;
+}
+
+input, textarea {
+    margin: 30rpx 0;
+}
+
+.header {
+    font-size: large;
+    text-align: center;
+    padding: 30rpx 0;
+    border: 1rpx solid #eee;
+    box-shadow: 1px 3px 5px #eee;
+    font-weight: bold;
+}
+
+/* 优惠类型 */
+.select-type{
+  margin: 0;
+}
+.select-type>.picker, .select-type>input {
+    display: inline-block;
+}
+
+.select-type>input {
+    margin: 0;
+    float: right;
+    width: 300rpx;
+}
+
+/* 使用方式 */
+
+.use-way {
+    margin: 30rpx 0;
+}
+
+.radio>label {
+    margin-right: 30rpx;
+}
+
+/*优惠劵描述*/
+.c,.d,textarea{
+border: 1rpx solid #eee;
+}
+/* 提交按钮 */
+.submit {
+    margin: 50rpx;
+    text-align: center;
 }

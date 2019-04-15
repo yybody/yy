@@ -35,6 +35,14 @@ padding-bottom: 30rpx;
 border-bottom: 1px solid yellowgreen;
 }
 
+#img2{
+        width: 100rpx;
+        height: 100rpx;
+        border: 1rpx solid;
+        border-radius:75rpx;
+        padding-top: -50rpx;
+}
+
 #img{ width: 100%;
 
  
@@ -53,4 +61,32 @@ border-bottom: 1px solid yellowgreen;
 #menu text{
 
   margin-left: 200rpx;
+}
+.ticket .type{
+	font-size:14px;
+	color:#999;
+	margin:15px 0;
+  margin-right: 57rpx;
+   margin-left: 20rpx;
+	width:190px;
+	overflow: hidden;
+	white-space:nowrap; 
+	text-overflow: ellipsis;
+   flex:3;
+	position: relative;
+ 
+}
+
+title{
+  padding-top: 60rpx;
+	font-size:15px;
+  margin-left: 20rpx;
+  
+}
+.submit{
+	float:right;
+	position: absolute;
+	top:15px;
+	right:5px;
+   
 }

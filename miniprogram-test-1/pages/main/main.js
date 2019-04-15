@@ -48,7 +48,7 @@ requestTo(){
    */
   onReady: function () {
     wx.request({
-      url: 'http://192.168.43.50:8080/food_controller/selectAllSeller',
+      url: 'http://192.168.43.49:8080/food_controller/selectAllSeller',
       header:{
         "Content-Type": "application/x-www-form-urlencoded"
       },

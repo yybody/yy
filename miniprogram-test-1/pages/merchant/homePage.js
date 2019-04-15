@@ -5,16 +5,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+   
   },
   /*扫一扫 */
-  sys() {
+  sys(e) {
     wx.scanCode({
       onlyFromCamera: true,
       success: (res) => {
-        console.log(res)
+        console.log(res.result)
+        wx.request({
+          url: 'http://192.168.43.49:8080/food_controller/setOut',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          method:"post",
+          data:{"id":res.result},
+          success:(res)=>{
+          if(res.data==1){
+            wx.showToast({
+              title: '扫描成功',
+            })
+          }
+
+          },fail(res){
+            wx.showToast({
+              title: '请求失败',
+            })
+
+          }
+
+
+        })
       }
     })
+
+  },
+  hint(){
+
+   wx.showModal({
+     title: '提示',
+     content: '后续功能暂未开放',
+   })
 
   },
 

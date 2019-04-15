@@ -4,32 +4,47 @@
         <view class='avatarUrl'>
            <image  src="{{userInfo.avatarUrl}}"></image>
            <view id='nav'>
-               <text>普通用户</text>
+               <text>用户</text>
                <text>{{userInfo.nickName}}</text>
            </view>
-           
         </view>
+        
         <!--空白-->
         <view class='kb'></view>
 
         
         <view class='service'>
                 <view>
-                      服务
+                      我的服务
                 </view>
         </view>
+        <view class='kb'></view>
         <!--功能列表-->
         
 
-              <view>
-                  <view>
-                        <navigator url='/pages/main/juan/useJuan'>优惠券</navigator>
+              <view class='table'>
+                <view class='tr'>
+                  <view class='th'>
+                       
+                        <navigator url="/pages/main/juan/useJuan">
+                         <image id='sao' src='/images/sao.png'   ></image>
+                        <view>优惠券</view>
+                        </navigator>
                   </view>
+
+             
+
+            
+
+               </view>
+
+
               </view>
-              
+</view>
+        
         
      
         
    
      
-</view>
+

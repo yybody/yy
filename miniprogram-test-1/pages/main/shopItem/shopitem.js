@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-     quan:""
+     quan:"",
+    sellerid:"",
+    userid:""
+
   },
    //领劵
   formSubmit(e) {
@@ -18,11 +21,25 @@ Page({
         "Content-Type": "application/x-www-form-urlencoded"
       },
       success: (res) => {
+        console.log(res.data)
         if (res.data == 1) {
-
           wx.showToast({
             title: '领取成功',
           })
+          wx.request({
+            url: 'http://192.168.43.49:8080/food_controller/selectSouponBySeller?openid=' + e.detail.value.sellerid,
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            success: (res) => {
+              console.log(res)
+              this.setData({
+                quan: res.data,
+                
+              })
+            }
+          })
+
         }
         else {
           wx.showToast({
@@ -46,15 +63,17 @@ Page({
    */
   onLoad: function (options) {
     const openid = options.openid
+    console.log(openid)
     wx.request({
       url: 'http://192.168.43.49:8080/food_controller/selectSouponBySeller?openid='+openid,
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
      success:(res)=>{
-        console.log(res)  
+        console.log(res.data)  
         this.setData({
-          quan:res.data
+          quan:res.data,
+          sellerid:openid
         })
      }
     })
@@ -71,7 +90,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var app = getApp();
+    console.log("DSDSD"+wx.getStorageSync("token"))
+    this.setData({
+      userid:wx.getStorageSync("token")
+    })
+    
   },
 
   /**

@@ -1,14 +1,21 @@
+
 <form bindsubmit="formSubmit">
-  <view>
-    <input name='username' type='text' value='a1234567' placeholder="用户名" />
+  <view class='whole'>
+  <view class='inputView'>
+  <image class='nameimage' src='/images/yonghu.png'></image>
+  <label class='loginlab'>用户名</label>
+  <input class='inputText' name='username' type='text' placeholder="请输入账号" />
   </view>
-  <view>
-    <input name='password' type='text' value='123456' password='ture' placeholder="密码" />
-  </view>
+
+  <view class='inputView'>
+  <image class='keyimage' src='/images/key.png'></image>
+  <label class='loginlab'>密码</label>
+  <input class='inputText' name='password' type='text' password='ture' placeholder="请输入密码" />
+  </view></view> 
  
 
   <view class='btn'>
-    <button form-type='submit' plain='true'>Submit</button>
+    <button size='mini' form-type='submit' plain='true'>Submit</button>
   </view>
 
 </form>

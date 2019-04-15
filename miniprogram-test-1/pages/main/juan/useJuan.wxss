@@ -1,5 +1,6 @@
 /* pages/main/juan/useJuan.wxss */
 /* pages/main/shopItem/shopitem.wxss */
+@import '../../merchant/template/temp.wxss';
  #forms{
   width: 100%;
   float: left;
@@ -20,3 +21,22 @@ margin-left: 300rpx;
 .Get{
   margin-left: 150rpx;
 }
+.getShi{
+  font-size: 15px;
+   padding-left: 175px;
+   margin-left: 50px;
+}
+
+.getUse{
+  font-size: 15px;
+  padding-left: 90px;
+   float: left;
+}
+.shadow{
+  margin-top: 10px;
+  width: 400px;
+  height: 100px;
+  
+   box-shadow: 0 -1px 3px#DDDDDD;
+}
+

@@ -12,16 +12,43 @@
       
        <block wx:for="{{nums}}" wx:key='sd1' wx:for-item='num'>
           <view wx:if="{{ty.souponType==num.SouponType}}">
-          <view>
-          <text>描述:</text>{{num.depict}}
-          <text>--类型:</text>{{num.SouponType}}
-          <text>--有效期:</text>{{useTime}}
-          <text>--是否可以混用:</text>{{num.mixuse}}
-          <text>--折扣:</text>{{num.rule}}
-          </view>
+
+          
+                     <!-- 礼券 -->
+       <view class='coupon'>
+        <view class="sawtooth">
+            <view class="price">
+                {{num.rule}}</view>
+
+        </view>
+        <view class="coupon-content">
+            <view class='coupon-explain'>
+                <text class="coupon-restrictions">限制学生使用</text>
+            </view>
+            <view class='coupon-use'>
+                <text class='coupon-time'><text>过期时间:</text>{{num.useTime}}</text>
+               
+            </view>
+            <view>
+                <view>
+                <text class='coupon-tips'>可否混合使用：</text>
+                <text class='coupon-tips'>{{num.mixuse}}</text>
+               </view>
+                <view>
+                <text class='coupon-tips'>剩余张数：</text>
+                <text class='coupon-tips'>{{num.allSoupon}}</text>
+                 </view>
+            </view>
+        </view>
+    
+
+        </view>
+          
+
           </view>
        
        </block>
+
        
        
     </swiper-item>

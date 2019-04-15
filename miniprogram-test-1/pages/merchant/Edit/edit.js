@@ -20,7 +20,9 @@ Page({
       method:'post',
       success:(res)=>{
         if(res.data==1){
-         
+         wx.showToast({
+           title: '修改成功',
+         })
           console.log("请求成功" + res)
         }else{
           console.log(res)
@@ -48,7 +50,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.getUserInfo({
+      success: (data) => {
+        this.setData({
+          userInfo: data.userInfo
+        })
+      }
+    })
   },
 
   /**

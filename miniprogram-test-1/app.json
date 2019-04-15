@@ -1,24 +1,28 @@
 {
   "pages": [
-    "pages/index/index",
+      "pages/index/index",
     "pages/main/main",
+ 
     
-    "pages/main/home",
+    
     "pages/main/juan/useJuan",
-   
-    "pages/main/shopItem/shopitem",
+      "pages/merchant/homePage",
+
     
-   
-    
-    
-    
-    "pages/merchant/Edit/edit",
-    "pages/merchant/homeFound/found",
-    "pages/merchant/homePage",
     "pages/merchant/homrCreat/creat",
-    "pages/merchant/login",
-    "pages/logs/logs"
     
+    "pages/main/shopItem/shopitem",
+    "pages/main/home",
+    
+    
+ 
+    "pages/merchant/login",
+
+    "pages/merchant/Edit/edit",
+    
+    "pages/merchant/homeFound/found",
+
+    "pages/logs/logs"
     
   ],
   "window": {

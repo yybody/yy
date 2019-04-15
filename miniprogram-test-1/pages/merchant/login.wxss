@@ -2,13 +2,40 @@
 
 /*input是行内块元素*/
 
-input {
-  width: 500rpx;
-  margin: 0 auto;
-  border: 1rpx solid rgb(8, 1, 1);
-}
+/* pages/merchant/login.wxss */
 
+/*input是行内块元素*/
+.whole{
+  margin-top: 80px;
+  flex: auto;
+  height: 100%;
+}
+.inputView{
+  background-color: #fff;
+  line-height: 44px;
+  border-bottom: 1px solid #f5f3f3;
+  border-top: 1px solid #f5f3f3;
+}
+.nameimage,.keyimage{
+  margin-left: 11px;
+  width: 14px;
+  height: 14px;
+}
+.loginlab{
+  margin: 15px 15px 15px 10px;
+  font-size: 14px;
+}
+.inputText{
+  flex: block;
+  float: right;
+  text-align: right;
+  margin-right: 22px;
+  margin-top: 11px;
+  color: #cccccc;
+  font-size: 14px;
+}
 button {
   margin: 100rpx 10rpx 300rpx;
-  
+  margin-top: 40px;
+ margin-left: 290rpx;
 }

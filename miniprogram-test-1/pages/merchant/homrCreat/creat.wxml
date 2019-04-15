@@ -1,50 +1,55 @@
 <!--优惠券生成-->
-<view>
+<view class='header'>添加优惠券信息</view>
+<view class='form'>
 
+    <!--表单-->
+    <form bindsubmit="formSubmit">
+   
 
-  
+        <!-- 优惠类型 -->
+        <view class='select-type form-item'>
+            <picker class='picker' bindchange='bindPickerChange' value='{{index}}' range-key='type' range='{{items}}'>              <input style='display:none' name='jname' type='text' placeholder='优惠内容' value='{{items[typeIndex].type}}' ></input>
               
-              <!--表单-->
-              <form bindsubmit="formSubmit">
-                   
-                <input name='jname' type='text' placeholder='优惠劵使用规则' />
-                 <view>
-                    <radio-group class='radio-group' name='radio' ><!--类型-->
-                           <label  wx:for="{{items}}" wx:key="a">
-                            <radio  value="{{item.type}}" checked='true'/>
-                            {{item.type}}
-                          </label> 
-                  </radio-group>
-                  <radio-group class='radio-group' name='radio2' >
-                           <label>
-                            <radio  value="1" checked='true'/>
-                             混用
-                          </label> 
-                          <label>
-                            <radio  value="0" />
-                             单用
-                          </label> 
-                  </radio-group>
-                 </view>
-                  
-                <input type='number'name='jdiscount' placeholder='优惠券折扣' />
-                <input type='number' name='jnumber' placeholder='优惠券数量'  />
-                <textarea name='jtext' placeholder='优惠券描述'></textarea>
-                <view>
-                <picker mode="date" name='jtime'  start="2015-09-01" end="2017-09-01"             bindchange="bindDateChange">
-                      <view class="picker">
-                      过期时间:<text>{{date}}</text>
-                      </view>
-                    </picker>
-                    </view>
-                    <view>
-                      <input id='openid' name='openid' value='{{openid}}' ></input>
-                    </view>
-                <button size='mini'  type='primary' plain='true'  form-type="submit"  >提交</button>
-                   
-              </form>
-         
+                <view>优惠类型：{{items[typeIndex].type}}</view>
+            </picker>
+            
+        </view>
 
+        <!-- 使用方式 -->
+        <view class='use-way form-item'>
+            <radio-group class='radio-group' name='radio2'>
+                <view class='radio'>
+                    <radio value="1" checked='true' id='fixed' />
+                    <label for='fixed'>混用</label>
+                    <radio value="0" id='single' />
+                    <label for='single'>单用</label>
+                </view>
+            </radio-group>
+        </view>
 
+        <!-- 优惠券描述 -->
+        <view class='form-item'>
+            <input class='c' type='text' name='jdiscount' placeholder='优惠券折扣'></input>
+            <input class='d' type='number' name='jnumber' placeholder='优惠券数量'></input>
+            <textarea name='jtext' placeholder='优惠券描述'></textarea>
+        </view>
 
+        <!-- 过期时间 -->
+        <view class='form-item'>
+            <picker mode="date" name='jtime' start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+                <view class="picker">
+                    过期时间：
+                    <text>{{date}}</text>
+                </view>
+            </picker>
+        </view>
+        <view class='form-item' style='display:none' >
+            <input id='openid' name='openid' value='{{openid}}'></input>
+        </view>
+
+        <view class='submit'>
+            <button size='mini' type='primary' form-type="submit">提交</button>
+        </view>
+
+    </form>
 </view>

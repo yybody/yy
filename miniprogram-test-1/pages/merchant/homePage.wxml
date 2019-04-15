@@ -1,4 +1,5 @@
 <!--pages/home/home.wxml-->
+
 <!--个人信息展示-->
 <view>
  
@@ -8,44 +9,58 @@
                <text>商家</text>
                <text>{{userInfo.nickName}}</text>
            </view>
-           
         </view>
+        
         <!--空白-->
         <view class='kb'></view>
 
         
         <view class='service'>
                 <view>
-                      服务
+                      我的服务
                 </view>
         </view>
         <!--功能列表-->
         
 
-              <view>
-                  <view>
-                        <image id='sys' src='/images/sys.jpg'  catchtap='sys'></image>
+              <view class='table'>
+                <view class='tr'>
+                  <view class='th'>
+                       
+                        <navigator>
+                         <image id='sao' src='/images/sao.png'  catchtap='sys'></image>
+                        <view>扫描礼券</view>
+                        </navigator>
                   </view>
-                  <view>
-                      <navigator url='./homrCreat/creat' >生成礼券</navigator>
-                      
-                  </view>
-                  <view>
-                      <navigator url='./homeFound/found' >查看礼券</navigator>
-                      
-                  </view>
-                  <view>
-                      <navigator url='./Edit/edit' >商家编辑</navigator>
-                      
-                  </view>
-              </view>
-              
 
-              
-              
-        
-     
-        
-   
-     
+                  <view class='th'>
+                      
+                      <navigator url='./homrCreat/creat' > 
+                      <image id='cre' src='/images/cre.png' ></image>
+                      <view>生成礼券</view></navigator>
+                  </view>
+
+                  <view class='th'>
+                      
+                      <navigator url='./homeFound/found' >
+                      <image id='lok' src='/images/lok.png' ></image>
+                      <view>查看礼券</view></navigator>
+                  </view>
+
+                  <view class='th'>
+                      
+                      <navigator url='./Edit/edit' >
+                      <image id='edi' src='/images/edi.png' ></image>
+                      <view>商家编辑</view></navigator>
+                  </view></view>
+
+                <view class='tr'>
+                  <view class='td'>
+                      <!-- 提示按钮 -->
+                      <image id='a1' src='/images/a1.png' catchtap='hint' ></image>
+                     
+                      <navigator>. . .</navigator>
+                  </view>
+</view>
+              </view>
 </view>
